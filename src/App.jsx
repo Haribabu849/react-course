@@ -1,5 +1,5 @@
 import React from "react";
-// import Styles from "./Styles";
+import Styles from "./Styles";
 import Javascript from "./Javascript";
 import Button from "./Button";
 import UserListComponent from "./UserListComponent";
@@ -8,6 +8,8 @@ import ReactFragment from "./ReactFragment";
 import Events from "./Events";
 import State from "./State";
 import FormState from "./FormState";
+import TodoJs from "./TodoJs";
+import "./styles.css";
 
 // props can be passed from parent to child
 const App = () => {
@@ -31,7 +33,8 @@ const App = () => {
       {/* <ReactFragment /> */}
       {/* <Events /> */}
       {/* <State /> */}
-      <FormState />
+      {/* <FormState /> */}
+      <TodoJs />
     </div>
   );
 };

@@ -1,4 +1,7 @@
-h2 {
+/* h2 {
   color: blue;
   background-color: orange;
+} */
+button:hover {
+  cursor: pointer;
 }
