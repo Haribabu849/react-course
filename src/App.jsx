@@ -10,9 +10,15 @@ import State from "./State";
 import FormState from "./FormState";
 import TodoJs from "./TodoJs";
 import "./styles.css";
+import Some from "./Some";
+import Effect from "./Effect";
+import SomeEffect from "./SomeEffect";
+import Datafetching from "./datafetching";
+import TodoApplication from "./TodoApplication";
 
 // props can be passed from parent to child
 const App = () => {
+  const [state, setState] = React.useState(false);
   let arr = [
     { name: "hari", age: 22, id: 1, dept: "IT" },
     { name: "Manoj", age: 21, id: 2, dept: "manager" },
@@ -34,7 +40,21 @@ const App = () => {
       {/* <Events /> */}
       {/* <State /> */}
       {/* <FormState /> */}
-      <TodoJs />
+      {/* <TodoJs /> */}
+      {/* <Some name="hari">
+        <button style={{ color: "red" }}>click emoji2</button>
+      </Some>
+      <Some name="manoj">
+        <button style={{ color: "green" }}>click emoji1</button>
+        <span>span text</span>
+      </Some> */}
+      {/* <button onClick={() => setState(!state)}>click</button>
+      {state && <Effect />} */}
+      {/* {state && <Datafetching />}
+      <button type="button" onClick={() => setState(!state)}>
+        toggle
+      </button> */}
+      <TodoApplication />
     </div>
   );
 };

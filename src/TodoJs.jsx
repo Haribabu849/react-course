@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import SearchData from "./searchData";
+import AddData from "./AddData";
 
 const TodoJs = () => {
   const [task, setTask] = useState("");
@@ -14,7 +16,6 @@ const TodoJs = () => {
   //   const [selectedObject, setSelectedObject] = useState({});
   const [selectPriority, setSelectPriority] = useState("low");
   const [selectPriority2, setSelectPriority2] = useState("all");
-  const [searchInput, setSearchInput] = useState("");
   const [submitData, setSubmitData] = useState("");
   const [globalSearch, setGlobalSearch] = useState("");
 
@@ -35,6 +36,9 @@ const TodoJs = () => {
 
   const deleteTodo = (id) => {
     setTodos((prev) => prev.filter((e) => e.id !== id));
+  };
+  const handleReset = () => {
+    setTodos([]);
   };
 
   const markAsCompleted = (id) => {
@@ -71,10 +75,9 @@ const TodoJs = () => {
     setIsEditing(false);
   };
 
-  const handleSearch = () => {
+  const handleSearch = (searchInput) => {
     // setSearchInput("");
     setSubmitData(searchInput);
-    setSearchInput("");
   };
 
   let filteredTodos =
@@ -87,8 +90,8 @@ const TodoJs = () => {
   let searchTodos = filteredTodos.filter((e) => {
     return e.text.includes(submitData);
   });
-  console.log(searchInput);
-  console.log(globalSearch);
+  // console.log(searchInput);
+  console.log("parent component");
 
   let globalSearchData = todos.filter((e) => {
     return e.text.includes(globalSearch);
@@ -117,38 +120,19 @@ const TodoJs = () => {
               <option value={e}>{e}</option>
             ))}
           </select>
-          <span>search for tasks</span>
-          <input
-            type="search"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-          />
-          <button onClick={handleSearch}>search</button>
+          <SearchData handleSearch={handleSearch} />
+
           <div>
-            <input
-              type="text"
-              onChange={(e) => setTask(e.target.value)}
-              placeholder="Enter task ..."
-              value={task}
+            <AddData
+              isEditing={isEditing}
+              onAdd={addTodo}
+              onEdit={handleEdit}
+              task={task}
+              setTask={setTask}
+              selectPriority={selectPriority}
+              setSelectPriority={setSelectPriority}
             />
 
-            {!isEditing ? (
-              <button type="button" onClick={addTodo}>
-                Add
-              </button>
-            ) : (
-              <button onClick={() => handleEdit()}>edit</button>
-            )}
-            <select
-              name=""
-              id=""
-              value={selectPriority}
-              onChange={(e) => setSelectPriority(e.target.value)}
-            >
-              {["low", "medium", "high"].map((e) => (
-                <option value={e}>{e}</option>
-              ))}
-            </select>
             {isEditing && (
               <select
                 name=""
