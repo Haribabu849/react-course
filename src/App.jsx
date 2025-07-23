@@ -15,6 +15,8 @@ import Effect from "./Effect";
 import SomeEffect from "./SomeEffect";
 import Datafetching from "./datafetching";
 import TodoApplication from "./TodoApplication";
+import ContexApi from "./ContexApi";
+import Reducer from "./Reducer";
 
 // props can be passed from parent to child
 const App = () => {
@@ -54,7 +56,9 @@ const App = () => {
       <button type="button" onClick={() => setState(!state)}>
         toggle
       </button> */}
-      <TodoApplication />
+      {/* <TodoApplication /> */}
+      {/* <ContexApi /> */}
+      <Reducer />
     </div>
   );
 };
