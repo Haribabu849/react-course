@@ -17,49 +17,60 @@ import Datafetching from "./datafetching";
 import TodoApplication from "./TodoApplication";
 import ContexApi from "./ContexApi";
 import Reducer from "./Reducer";
+import RefContainer from "./RefContainer";
+import Memo from "./memo";
+import Callback from "./callback";
+import ReactMemo from "./ReactMemo";
+import CustomHook1 from "./CustomHook1";
+import CustomHook2 from "./CustomHook2";
+import { Outlet, Route, Routes } from "react-router-dom";
+import HomePage from "./HomePage";
+import About from "./About";
+import Navbar from "./Navbar";
+import Contact from "./Contact";
+import Parent from "./Parent";
+import Element from "./Element";
+import NotFound from "./NotFound";
+import Params from "./Params";
+import SearchParams from "./SearchParams";
+import ProtectedRoute from "./ProtectedRoute";
+import Unauthorized from "./Unauthorized";
+import Admin from "./Admin";
 
 // props can be passed from parent to child
 const App = () => {
-  const [state, setState] = React.useState(false);
-  let arr = [
-    { name: "hari", age: 22, id: 1, dept: "IT" },
-    { name: "Manoj", age: 21, id: 2, dept: "manager" },
-    { name: "hari", age: 23, id: 3, dept: "HR" },
-  ];
-  // console.log(arr);
+  const isAuthenticated = false; // Example authentication state
+  const isAdmin = false;
   return (
-    <div>
-      {/* <Styles /> */}
-      {/* <Javascript /> */}
-      {/* to create list use map method */}
-      {/* {arr.map((e) => {
-        // const { id, name, age } = e;
-        return <UserListComponent {...e} key={e.id} />;
-      })} */}
-      {/* {[<Button btnName={"submit"} />, <Button btnName={"reset"} />]} */}
-      {/* <ConditionalRendering /> */}
-      {/* <ReactFragment /> */}
-      {/* <Events /> */}
-      {/* <State /> */}
-      {/* <FormState /> */}
-      {/* <TodoJs /> */}
-      {/* <Some name="hari">
-        <button style={{ color: "red" }}>click emoji2</button>
-      </Some>
-      <Some name="manoj">
-        <button style={{ color: "green" }}>click emoji1</button>
-        <span>span text</span>
-      </Some> */}
-      {/* <button onClick={() => setState(!state)}>click</button>
-      {state && <Effect />} */}
-      {/* {state && <Datafetching />}
-      <button type="button" onClick={() => setState(!state)}>
-        toggle
-      </button> */}
-      {/* <TodoApplication /> */}
-      {/* <ContexApi /> */}
-      <Reducer />
-    </div>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/login" element={<h1>This is login page</h1>} />
+        <Route path="/" element={<HomePage />} />
+        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Route>
+        <Route path="/admin" element={<Admin isAdmin={isAdmin} />}>
+          <Route path="dashboard" element={<h1>Admin Dashboard</h1>} />
+          <Route path="settings" element={<h1>Admin Settings</h1>} />
+        </Route>
+
+        {/* <Route path="/products" /> */}
+        <Route path="/parent" element={<Parent />}>
+          <Route index element={<h1>Child Component</h1>} />
+          <Route path="child2" element={<h1>child component 2</h1>} />
+        </Route>
+        <Route path="/parent/child" element={<Element />}>
+          <Route path="child2" element={<h1>Child 2 Component</h1>} />
+          <Route path="child3" element={<h1>Child 3 Component</h1>} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+        <Route path="/posts/:id" element={<Params />} />
+        <Route path="/data" element={<SearchParams />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
+      </Routes>
+    </>
   );
 };
 
